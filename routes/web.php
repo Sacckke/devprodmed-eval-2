@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TokenController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RecipeController;
 
 Route::get('/', function () {
     $posts = Post::orderBy('created_at', 'desc')->with('user')->with('likes')->limit(3)->get();
@@ -23,6 +24,9 @@ Route::get('/@{username}', [ProfileController::class, 'show'])->where('username'
 
 Route::resource('posts', PostController::class)->except(['index', 'show'])->middleware('auth');
 Route::resource('posts', PostController::class)->only(['index', 'show']);
+
+Route::resource('recipes', RecipeController::class)->except(['index', 'show'])->middleware('auth');
+Route::resource('recipes', RecipeController::class)->only(['index', 'show']);
 
 Route::singleton('my-profile', MyProfileController::class)->destroyable()->middleware('auth');
 
