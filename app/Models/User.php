@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -28,4 +29,18 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Post::class, 'likes')->using(Like::class)->withTimestamps()->withPivot('reaction');
     }
+
+    protected $casts = [
+    'is_chef' => 'boolean',
+];
+
+public function recipes(): HasMany
+{
+    return $this->hasMany(Recipe::class);
+}
+
+public function isChef(): bool
+{
+    return $this->is_chef === true;
+}
 }
