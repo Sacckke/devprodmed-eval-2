@@ -66,6 +66,34 @@
                             {{ __('ui.tokens.form.fields.scopes.options.posts_delete') }}
                         </label>
                     </div>
+                    <div class="flex items-center mb-2">
+    <input type="checkbox" id="scope-recipes:create" name="scopes[]" value="recipes:create"
+        {{ in_array('recipes:create', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
+    <label for="scope-recipes:create" class="text-sm text-gray-700 dark:text-gray-300">
+        Créer des recettes
+    </label>
+</div>
+<div class="flex items-center mb-2">
+    <input type="checkbox" id="scope-recipes:read" name="scopes[]" value="recipes:read"
+        {{ in_array('recipes:read', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
+    <label for="scope-recipes:read" class="text-sm text-gray-700 dark:text-gray-300">
+        Lire les recettes
+    </label>
+</div>
+<div class="flex items-center mb-2">
+    <input type="checkbox" id="scope-recipes:update" name="scopes[]" value="recipes:update"
+        {{ in_array('recipes:update', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
+    <label for="scope-recipes:update" class="text-sm text-gray-700 dark:text-gray-300">
+        Modifier des recettes
+    </label>
+</div>
+<div class="flex items-center mb-2">
+    <input type="checkbox" id="scope-recipes:delete" name="scopes[]" value="recipes:delete"
+        {{ in_array('recipes:delete', old('scopes', [])) ? 'checked' : '' }} class="mr-2">
+    <label for="scope-recipes:delete" class="text-sm text-gray-700 dark:text-gray-300">
+        Supprimer des recettes
+    </label>
+</div>
                     @error('scopes')
                         <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                     @enderror
